@@ -1,0 +1,18 @@
+services:
+  inventario:
+    build: ./inventario
+    ports:
+      - "3002:3002"
+    environment:
+      PORT: 3002
+      RETARDO_MS: 0
+
+  pedidos:
+    build: ./pedidos
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      INVENTARIO_URL: http://inventario:3002
+    depends_on:
+      - inventario
